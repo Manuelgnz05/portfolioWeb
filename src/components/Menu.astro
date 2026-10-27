@@ -1,0 +1,110 @@
+---
+const navLinks = [
+  { name: 'Inicio', href: '#inicio' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Educación', href: '#educacion' },
+  { name: 'Idiomas', href: '#idiomas' },
+  { name: 'Experiencia', href: '#experiencia' },
+  { name: 'Proyectos', href: '#proyectos' },
+  { name: 'Certificaciones', href: '#certificaciones' }
+];
+
+const socialLinks = [
+  { name: 'GitHub', href: 'https://github.com/Manuelgnz05', icon: '/githudSNegro.png' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/manuel-gonz%C3%A1lez-caballero-439bb1410/', icon: '/logo_linkedin.png' }
+];
+---
+
+<header class="navbar-wrapper">
+  <div class="navbar-container">
+
+    <a href="#inicio" class="logo-container" aria-label="Inicio">
+      <img src="/logo_portfolio_sinfondo.png" alt="Logo MGC" class="logo-img" />
+    </a>
+
+    <!-- Menú de Navegación -->
+    <nav class="nav-links">
+      {navLinks.map((link) => (
+        <a href={link.href}>{link.name}</a>
+      ))}
+    </nav>
+
+    <div class="social-links">
+      {socialLinks.map((social) => (
+        <a href={social.href} aria-label={social.name}>
+          <img src={social.icon} alt={social.name} class="social-icon" />
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 20px 32px;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar-container {
+    width: 100%;
+    max-width: 1180px;
+    background-color: #E0E0E0;
+    border: 3px solid #6A6A6A;
+    border-radius: 2px;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 50.6px rgba(0, 0, 0, 0.25);
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #262626;
+    font-size: 15px;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .social-links a {
+    display: flex;
+    align-items: center;
+  }
+
+  .social-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+</style>
