@@ -1,0 +1,29 @@
+[
+  {
+    "role": "Web Developer",
+    "company": "NTT Data",
+    "companyUrl": "https://www.nttdata.com",
+    "startDate": "Mayo 2025",
+    "endDate": "Presente",
+    "location": "Sevilla, España",
+    "isCurrent": true
+  },
+  {
+    "role": "Frontend Developer",
+    "company": "Accenture",
+    "companyUrl": "https://www.accenture.com",
+    "startDate": "Enero 2024",
+    "endDate": "Abril 2025",
+    "location": "Sevilla, España",
+    "isCurrent": false
+  },
+  {
+    "role": "Full Stack Developer",
+    "company": "Deloitte Digital",
+    "companyUrl": "https://www.deloittedigital.com",
+    "startDate": "Junio 2023",
+    "endDate": "Mayo 2025",
+    "location": "Madrid, España",
+    "isCurrent": false
+  }
+]

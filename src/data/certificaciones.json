@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    "issuer": "Microsoft",
+    "year": "2026",
+    "description": "Fundamentos de la nube, incluidos los servicios de Azure y los conceptos clave de la nube.",
+    "credentialUrl": "https://learn.microsoft.com/credentials/"
+  },
+  {
+    "id": 2,
+    "title": "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    "issuer": "Microsoft",
+    "year": "2026",
+    "description": "Fundamentos de la nube, incluidos los servicios de Azure y los conceptos clave de la nube.",
+    "credentialUrl": "https://learn.microsoft.com/credentials/"
+  },
+  {
+    "id": 3,
+    "title": "Microsoft Certified: Azure Fundamentals (AZ-900)",
+    "issuer": "Microsoft",
+    "year": "2026",
+    "description": "Fundamentos de la nube, incluidos los servicios de Azure y los conceptos clave de la nube.",
+    "credentialUrl": "https://learn.microsoft.com/credentials/"
+  }
+]
