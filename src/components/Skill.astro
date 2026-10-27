@@ -1,0 +1,137 @@
+---
+const { json } = Astro.props;
+---
+
+<div class="skill-wrapper" data-percentage={json.percentage}>
+  <div 
+    class="skill-card" 
+    style={`background-image: linear-gradient(180deg, ${json.color} 0%, #E0E0E0 100%);`}
+  >
+    <img src={json.icon} alt={json.name} />
+    <span>{json.name}</span>
+  </div>
+
+  <!-- Barra de progreso oculta por defecto -->
+  <div class="progress-container">
+    <div class="progress-track">
+      <div class="progress-fill" style={`background-color: ${json.color};`}></div>
+    </div>
+    <span class="progress-text">0%</span>
+  </div>
+</div>
+
+<style>
+  .skill-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .skill-card {
+    width: 280px;
+    height: 150px;
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    box-shadow: 0px 4px 100px 15px rgba(0, 0, 0, 0.25);
+  }
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  span {
+    font-size: 30px;
+    font-weight: 500;
+    color: #1A1A1A;
+    letter-spacing: 0.5px;
+  }
+
+  .progress-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 90%; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .skill-wrapper:hover .progress-container {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 14px;
+    background-color: #E0E0E0;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%; 
+    border-radius: 15px;
+    transition: width 0.8s ease-out; 
+  }
+
+  .progress-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A1A1A;
+    min-width: 35px;
+    text-align: right;
+  }
+</style>
+
+<script>
+  const wrappers = document.querySelectorAll('.skill-wrapper');
+
+  wrappers.forEach(wrapper => {
+    const fill = wrapper.querySelector('.progress-fill') as HTMLElement;
+    const text = wrapper.querySelector('.progress-text') as HTMLElement;
+    
+    const targetStr = wrapper.getAttribute('data-percentage');
+    const target = targetStr ? parseInt(targetStr, 10) : 0;
+    
+    let interval: ReturnType<typeof setInterval>;
+
+    wrapper.addEventListener('mouseenter', () => {
+
+      if (fill) fill.style.width = target + '%';
+      
+      let current = 0;
+      clearInterval(interval);
+      
+      const speed = target > 0 ? 800 / target : 0; 
+      
+      if (target > 0) {
+        interval = setInterval(() => {
+          if (current >= target) {
+            clearInterval(interval);
+            if (text) text.innerText = target + '%';
+          } else {
+            if (text) text.innerText = current + '%';
+            current++;
+          }
+        }, speed);
+      }
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      // Resetea los valores al quitar el cursor
+      clearInterval(interval);
+      if (fill) fill.style.width = '0%';
+      if (text) text.innerText = '0%';
+    });
+  });
+</script>

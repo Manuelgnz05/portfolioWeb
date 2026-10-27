@@ -1,0 +1,49 @@
+---
+import json from "../data/skills.json";
+import Skill from "./Skill.astro";
+---
+
+<section id="skills">
+  <div class="skills-wrapper">
+    <h2>SKILLS</h2>
+    <div class="skills-container">
+      {json.map((contenido) => (
+        <Skill json={contenido} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: #E0E0E0;
+  }
+
+  .skills-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #333333;
+    letter-spacing: 2px;
+    margin: 0px 0px 70px 0px;
+    text-transform: uppercase;
+  }
+
+  .skills-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px 100px;
+    justify-content: space-between;
+  }
+</style>
