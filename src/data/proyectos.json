@@ -4,8 +4,8 @@
     "title": "nocturne",
     "image": "proyecto1.png",
     "description": "Un rincón tranquilo en la web para expresar lo que sientes, sin filtros.",
-    "githubUrl": "https://github.com/tu-usuario/nocturne",
-    "liveUrl": "https://nocturne.app",
+    "githubUrl": "https://github.com/dwnppoalt/nocturne",
+    "liveUrl": "https://nocturne.dwnppo.dev/",
     "technologies": [
       { "name": "React", "icon": "react.png" },
       { "name": "JavaScript", "icon": "js.png" },
@@ -17,7 +17,7 @@
     "title": "Iskolar ni Simeon",
     "image": "proyecto2.png",
     "description": "Un archivo de tesis y publicaciones de investigación para General de Jesus. Un proyecto final.",
-    "githubUrl": "https://github.com/tu-usuario/iskolar-ni-simeon",
+    "githubUrl": "https://github.com/iskolar-ni-Simeon/Iskolar-ni-Simeon",
     "liveUrl": "https://iskolarnisimeon.com",
     "technologies": [
       { "name": "Python", "icon": "python.png" },
@@ -30,8 +30,8 @@
   "title": "Markr",
   "image": "proyecto3.png",
   "description": "Una herramienta experimental que captura el contenido de pizarras en entornos reales mediante visión artificial e inteligencia artificial.",
-  "githubUrl": "https://github.com/tu-usuario/markr",
-  "liveUrl": "https://dwnppo.dev",
+  "githubUrl": "https://github.com/Manuelgnz05",
+  "liveUrl": "https://github.com/dwnppoalt/markr",
   "technologies": [
     { "name": "Python", "icon": "python.png" },
     { "name": "Gemini", "icon": "gemini.png" },

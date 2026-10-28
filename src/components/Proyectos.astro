@@ -1,0 +1,119 @@
+---
+// src/components/Proyectos.astro
+import json from "../data/proyectos.json";
+import Proyecto from "./Proyecto.astro";
+---
+
+<section id="proyectos">
+  <div class="proyectos-wrapper">
+    <h2>PROYECTOS</h2>
+
+    <div class="carousel-container">
+      <!-- Botón Flecha Izquierda -->
+      <button id="btn-prev" class="nav-btn" aria-label="Proyecto anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+
+      <!-- Tarjetas de Proyectos -->
+      <div class="cards-wrapper">
+        {json.map((contenido, index) => (
+          <Proyecto json={contenido} active={index === 0} />
+        ))}
+      </div>
+
+      <!-- Botón Flecha Derecha -->
+      <button id="btn-next" class="nav-btn" aria-label="Siguiente proyecto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const cards = document.querySelectorAll('.proyecto-card');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  
+  let currentIndex = 0;
+
+  function updateCarousel(newIndex: number) {
+    cards[currentIndex].classList.remove('active');
+    currentIndex = (newIndex + cards.length) % cards.length;
+    cards[currentIndex].classList.add('active');
+  }
+
+  btnPrev?.addEventListener('click', () => {
+    updateCarousel(currentIndex - 1);
+  });
+
+  btnNext?.addEventListener('click', () => {
+    updateCarousel(currentIndex + 1);
+  });
+</script>
+
+<style>
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0px;
+    margin-top: 100px;
+  }
+
+  .proyectos-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #434343;
+    letter-spacing: 2px;
+    margin: 0px 0px 60px 0px;
+    text-transform: uppercase;
+  }
+
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .cards-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #434343;
+    border: none;
+    color: #E0E0E0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+  }
+
+  .nav-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+</style>
