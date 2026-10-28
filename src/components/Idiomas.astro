@@ -1,0 +1,50 @@
+---
+import json from "../data/idiomas.json";
+import Idioma from "./Idioma.astro";
+---
+
+<section id="idiomas">
+  <div class="idiomas-wrapper">
+    <h2>IDIOMAS</h2>
+    <div class="idiomas-container">
+      {json.map((contenido) => (
+        <Idioma json={contenido} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0px;
+    margin-top: 100px;
+  }
+
+  .idiomas-wrapper {
+    width: 100%;
+    width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #434343;
+    letter-spacing: 2px;
+    margin-bottom: 80px;
+    text-transform: uppercase;
+  }
+
+  .idiomas-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+  }
+</style>

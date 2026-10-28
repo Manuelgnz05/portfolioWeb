@@ -1,0 +1,91 @@
+---
+const { json } = Astro.props;
+
+const isUK = json.code === 'en';
+
+const colorsCount = json.ribbonColors.length;
+const step = 100 / colorsCount;
+const gradientStops = json.ribbonColors
+  .map((color: string, index: number) => {
+    const start = index * step;
+    const end = (index + 1) * step;
+    return `${color} ${start}%, ${color} ${end}%`;
+  })
+  .join(', ');
+
+const ribbonBackground = `linear-gradient(to right, ${gradientStops})`;
+---
+
+<div class="idioma-wrapper">
+  <!-- Imagen de la bandera directamente con sombra en la silueta de la foto -->
+  <img src={json.flagIcon} alt={`${json.language} - ${json.level}`} class="flag-image" />
+
+  <!-- Cinta desplegable al hacer hover -->
+  <div class="ribbon-container">
+    <div 
+      class={`ribbon ${isUK ? 'uk-ribbon' : ''}`} 
+      style={!isUK ? `background: ${ribbonBackground};` : ''}
+    >
+      <span class="ribbon-text">{json.level}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .idioma-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+  }
+
+  .flag-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.3));
+  }
+
+  .ribbon-container {
+    position: absolute;
+    top: 100px;
+    z-index: 1;
+    width: 80px;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+  }
+
+  .idioma-wrapper:hover .ribbon-container {
+    height: 170px;
+  }
+
+  .ribbon {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+  }
+
+  .uk-ribbon {
+    background-image: url('public/bandera-reino-unido.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .ribbon-text {
+    font-size: 15px;
+    font-weight: 800;
+    color: #161616;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 2px;
+  }
+</style>
