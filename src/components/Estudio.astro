@@ -1,12 +1,10 @@
 ---
-// src/components/Estudio.astro
 const { json } = Astro.props;
 ---
 
 <div class={`timeline-row ${json.side}`}>
   {json.side === 'left' ? (
     <>
-      <!-- Tarjeta a la izquierda -->
       <div class="card-container">
         <div class="card">
           <div class="card-header">
@@ -157,6 +155,7 @@ const { json } = Astro.props;
     border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.35);
     overflow: hidden;
+    outline: 2px solid transparent;
   }
 
   .card-header {
@@ -300,23 +299,14 @@ const { json } = Astro.props;
 /* Hover sobre la tarjeta entera */
 .card:hover {
   /* Borde verdoso exterior y sombra iluminada */
-  border: 2px solid #8B9B82;
+  outline: 2px solid #AAB888;
   box-shadow: 0px 10px 35px rgba(139, 155, 130, 0.3);
 }
 
 /* Cambios de color de texto dentro del hover */
 .card:hover h3 {
-  color: #A3C994;
+  color: #AAB888;
 }
 
-.card:hover .tag {
-  border-color: #A3C994;
-  color: #A3C994;
-  background-color: rgba(163, 201, 148, 0.2);
-}
-
-.card:hover .insertions {
-  color: #70C959;
-}
 
 </style>

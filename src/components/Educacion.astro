@@ -89,11 +89,12 @@ import Estudio from "./Estudio.astro";
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
+    outline: 2px solid transparent;
   }
 
 
     .commit-pill:hover {
-        border: 2px solid #AAB888;
+        outline: 2px solid #AAB888;
         color: #AAB888;
         box-shadow: 0px 6px 20px rgba(139, 155, 130, 0.3);
     }
@@ -101,6 +102,10 @@ import Estudio from "./Estudio.astro";
     .icon-commit {
         width: 25px;
         height: 13px;
+    }
+
+    .commit-pill:hover .icon-commit {
+      filter: brightness(0) saturate(100%) invert(81%) sepia(21%) saturate(629%) hue-rotate(54deg) brightness(91%) contrast(85%);
     }
 
   
