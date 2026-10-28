@@ -2,21 +2,21 @@
   {
     "language": "Español",
     "code": "es",
-    "flagIcon": "public/España.png",
+    "flagIcon": "España.png",
     "level": "NATIVO",
     "ribbonColors": ["#aa151b", "#f1bf00", "#aa151b"]
   },
   {
     "language": "Francés",
     "code": "fr",
-    "flagIcon": "public/Francia.png",
+    "flagIcon": "Francia.png",
     "level": "A2",
     "ribbonColors": ["#002395", "#E0E0E0", "#ed2939"]
   },
   {
     "language": "Inglés",
     "code": "en",
-    "flagIcon": "public/Reino-Unido.png",
+    "flagIcon": "Reino-Unido.png",
     "level": "MEDIO",
     "ribbonColors": ["#012169", "#c8102e"]
   }

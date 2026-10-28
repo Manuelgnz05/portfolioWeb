@@ -1,0 +1,95 @@
+---
+const { json, isLast } = Astro.props;
+---
+
+<div class="experiencia-item">
+  <div class="timeline-column">
+    <div class={`timeline-node ${json.isCurrent ? 'active' : ''}`}></div>
+    {!isLast && <div class="timeline-line"></div>}
+  </div>
+
+  <div class="card">
+    <h3>{json.role}</h3>
+    <a href={json.companyUrl} target="_blank" rel="noopener noreferrer" class="company">
+      {json.company}
+    </a>
+    <p class="details">{json.startDate} - {json.endDate} · {json.location}</p>
+  </div>
+</div>
+
+<style>
+  .experiencia-item {
+    display: flex;
+    gap: 60px;
+    width: 800px;
+    height: 180px;
+    justify-content: center;
+  }
+
+  .timeline-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .timeline-node {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #AAB888;
+    background-color: transparent;
+    box-sizing: border-box;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .timeline-node.active {
+    background-color: #AAB888;
+    border-color: #AAB888;
+  }
+
+  .timeline-line {
+    position: absolute;
+    top: 120px; 
+    bottom: -100px; 
+    width: 2px;
+    background-color: #AAB888;
+  }
+
+  .card {
+    width: 700px;
+    background-color: #434343;
+    border-radius: 10px;
+    padding: 32px 36px;
+    box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #E0E0E0;
+    margin: 0px;
+    line-height: 1;
+  }
+
+  .company {
+    font-size: 18px;
+    font-weight: 400;
+    color: #AAB888;
+    text-decoration: none;
+    margin: 0px;
+    width: fit-content;
+  }
+
+  .details {
+    font-size: 16px;
+    color: #E0E0E0;
+    margin: 0px;
+  }
+</style>

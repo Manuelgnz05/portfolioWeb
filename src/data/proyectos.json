@@ -2,40 +2,40 @@
   {
     "id": "nocturne",
     "title": "nocturne",
-    "image": "../../public/proyecto1.png",
+    "image": "proyecto1.png",
     "description": "Un rincón tranquilo en la web para expresar lo que sientes, sin filtros.",
     "githubUrl": "https://github.com/tu-usuario/nocturne",
     "liveUrl": "https://nocturne.app",
     "technologies": [
-      { "name": "React", "icon": "../../public/react.png" },
-      { "name": "JavaScript", "icon": "../../public/js.png" },
-      { "name": "CSS3", "icon": "../../public/css-3.png" }
+      { "name": "React", "icon": "react.png" },
+      { "name": "JavaScript", "icon": "js.png" },
+      { "name": "CSS3", "icon": "css-3.png" }
     ]
   },
   {
     "id": "iskolar-ni-simeon",
     "title": "Iskolar ni Simeon",
-    "image": "../../public/proyecto2.png",
+    "image": "proyecto2.png",
     "description": "Un archivo de tesis y publicaciones de investigación para General de Jesus. Un proyecto final.",
     "githubUrl": "https://github.com/tu-usuario/iskolar-ni-simeon",
     "liveUrl": "https://iskolarnisimeon.com",
     "technologies": [
-      { "name": "Python", "icon": "../../public/python.png" },
-      { "name": "PHP", "icon": "../../public/php.png" },
-      { "name": "Astro", "icon": "../../public/Astro_edited.png" }
+      { "name": "Python", "icon": "python.png" },
+      { "name": "PHP", "icon": "php.png" },
+      { "name": "Astro", "icon": "Astro_edited.png" }
     ]
   },
   {
   "id": "markr",
   "title": "Markr",
-  "image": "../../public/proyecto3.png",
+  "image": "proyecto3.png",
   "description": "Una herramienta experimental que captura el contenido de pizarras en entornos reales mediante visión artificial e inteligencia artificial.",
   "githubUrl": "https://github.com/tu-usuario/markr",
   "liveUrl": "https://dwnppo.dev",
   "technologies": [
-    { "name": "Python", "icon": "../../public/python.png" },
-    { "name": "Gemini", "icon": "../../public/gemini.png" },
-    { "name": "CSS3", "icon": "../../public/css-3.png" }
+    { "name": "Python", "icon": "python.png" },
+    { "name": "Gemini", "icon": "gemini.png" },
+    { "name": "CSS3", "icon": "css-3.png" }
   ]
 }
 ]

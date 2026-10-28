@@ -7,12 +7,12 @@
     "center": "@ IES Vedruna",
     "description": "Especializado en el desarrollo, implantación y mantenimiento de aplicaciones web con arquitecturas frontend y backend.",
     "tags": ["Spring Boot", "Java", "JavaScript"],
-    "filesIcon": "public/archivo.png",
+    "filesIcon": "archivo.png",
     "filesChanged": "12 files changed",
     "insertions": "+110 insertions",
     "deletions": "-37 deletions",
     "date": "2025-09 - 2027-06",
-    "calendarIcon": "public/calendar.png",
+    "calendarIcon": "calendar.png",
     "side": "left"
   },
   {
@@ -23,12 +23,12 @@
     "center": "@ IES Antonio Machado",
     "description": "Formación académica enfocada en ciencias aplicadas, lógica algorítmica e ingeniería.",
     "tags": ["Matemáticas", "Física", "Dibujo técnico"],
-    "filesIcon": "public/archivo.png",
+    "filesIcon": "archivo.png",
     "filesChanged": "4 files changed",
     "insertions": "+160 insertions",
     "deletions": "-25 deletions",
     "date": "2021-09 - 2023-06",
-    "calendarIcon": "public/calendar.png",
+    "calendarIcon": "calendar.png",
     "side": "right"
   }
 ]
