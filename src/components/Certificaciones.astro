@@ -1,0 +1,46 @@
+---
+import json from "../data/certificaciones.json";
+import Certificacion from "./Certificacion.astro";
+---
+
+<section id="certificaciones">
+  <div class="wrapper">
+    <h2>CERTIFICACIONES</h2>
+    <div class="list">
+      {json.map((cert) => (
+        <Certificacion json={cert} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0;
+  }
+
+  .wrapper {
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #434343;
+    letter-spacing: 2px;
+    margin: 0 0 60px 0;
+    text-transform: uppercase;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+</style>

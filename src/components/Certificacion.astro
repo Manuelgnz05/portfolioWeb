@@ -1,0 +1,81 @@
+---
+const { json } = Astro.props;
+---
+
+<a href={json.credentialUrl} target="_blank" rel="noopener noreferrer" class="cert-card" aria-label={`Ver credencial de ${json.title}`}>
+  <div class="header">
+    <h3>{json.title}</h3>
+    <div class="share-btn">
+      <img src="export.png" alt="Compartir" class="share-icon" />
+    </div>
+  </div>
+  <p class="issuer">{json.issuer} ({json.year})</p>
+  <p class="description">{json.description}</p>
+</a>
+
+<style>
+  .cert-card {
+    border-radius: 20px;
+    padding: 32px 40px;
+    width: 1000px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #434343;
+    margin: 0px;
+  }
+
+  .share-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #434343;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+
+  .cert-card:hover .share-btn {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .share-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .issuer {
+    font-size: 16px;
+    color: #6C6C6C;
+    margin: 0px;
+  }
+
+  .description {
+    font-size: 16px;
+    color: #6C6C6C;
+    margin: 12px 0px 0px 0px;
+  }
+</style>
