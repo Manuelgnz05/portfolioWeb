@@ -16,6 +16,7 @@ const socialLinks = [
 ---
 
 <header class="navbar-wrapper">
+  <div class="difuminado"></div>
   <div class="navbar-container">
 
     <a href="#inicio" class="logo-container" aria-label="Inicio">
@@ -42,23 +43,26 @@ const socialLinks = [
   .navbar-wrapper {
     position: fixed;
     top: 0px;
-    left: 0px;
     width: 100%;
-    padding: 20px 32px;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background-color: #E0E0E0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .difuminado{
+    width: 1180px;
+    height: 40px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
   }
 
   .navbar-container {
     width: 100%;
     max-width: 1180px;
     background-color: #E0E0E0;
-    border: 3px solid #6A6A6A;
+    border: 4px solid #6A6A6A;
     border-radius: 2px;
     padding: 14px 28px;
     display: flex;
