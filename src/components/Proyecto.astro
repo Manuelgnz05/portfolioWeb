@@ -109,6 +109,7 @@ const { json, active } = Astro.props;
     gap: 12px;
   }
 
+  /* --- HOVER SUTIL SIN TONO VERDE Y CON ELEVACIÓN MÍNIMA --- */
   .btn-link {
     width: 40px;
     height: 40px;
@@ -118,6 +119,17 @@ const { json, active } = Astro.props;
     align-items: center;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.03);
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-link:hover {
+    transform: translateY(-1px);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-link:active {
+    transform: translateY(0px);
   }
 
   /* Imágenes PNG para los botones de enlaces */
@@ -125,6 +137,11 @@ const { json, active } = Astro.props;
     width: 22px;
     height: 22px;
     object-fit: contain;
+    transition: transform 0.25s ease;
+  }
+
+  .btn-link:hover .link-icon {
+    transform: scale(1.04);
   }
 
   .tech-stack {

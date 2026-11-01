@@ -1,7 +1,7 @@
 <section id="inicio">
   <article>
     <div class="imagen-box">
-      <img src="/perfil.png" alt="Fotografía de perfil" />
+      <img src="perfil.png" alt="Fotografía de perfil" />
     </div>
     
     <div class="texto-box">
@@ -9,10 +9,39 @@
       <p>
         Soy un profesional con experiencia como profesor particular. Destaco por mi habilidad con el lenguaje Java y mis excepcionales habilidades de comunicación. Busco aplicar mi creatividad e ingenio en un entorno colaborativo.
       </p>
-      <a href="#contacto">Contacto</a>
+      
+      <button class="link-contacto nav-trigger" data-target="#contacto" data-offset="0">
+        Contacto
+      </button>
     </div>
   </article>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnContacto = document.querySelector('.btn-contacto, .link-contacto');
+
+    if (btnContacto) {
+      btnContacto.addEventListener('click', () => {
+        const targetId = btnContacto.getAttribute('data-target');
+        const customOffset = parseInt(btnContacto.getAttribute('data-offset') || '100', 10);
+
+        if (targetId) {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - customOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    }
+  });
+</script>
 
 <style>
   section {
@@ -42,7 +71,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
   }
 
   .texto-box {
@@ -55,19 +83,50 @@
   h2 {
     font-size: 32px;
     font-weight: 700;
-    margin: 0px 0px 24px 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #434343;
   }
 
   p {
     font-size: 18px;
     line-height: 28px;
-    margin: 0px 0px 32px 0px;
+    margin-bottom: 32px;
   }
 
-  a {
+  .link-contacto {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Roboto Serif', Georgia, serif;
     font-size: 18px;
     color: #89B888;
     text-decoration: none;
     align-self: flex-start;
+    cursor: pointer;
+    transition: color 0.25s ease, transform 0.25s ease;
   }
+
+  /* Línea animada inferior en hover */
+  .link-contacto::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #89B888;
+    transition: width 0.2s ease;
+  }
+
+  .link-contacto:hover {
+    color: #89B888;
+    transform: translateY(-1px);
+  }
+
+  .link-contacto:hover::after {
+    width: 100%;
+  }
+  
 </style>

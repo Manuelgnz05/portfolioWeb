@@ -2,34 +2,58 @@
 const { json } = Astro.props;
 
 const isUK = json.code === 'en';
-
-const colorsCount = json.ribbonColors.length;
-const step = 100 / colorsCount;
-const gradientStops = json.ribbonColors
-  .map((color: string, index: number) => {
-    const start = index * step;
-    const end = (index + 1) * step;
-    return `${color} ${start}%, ${color} ${end}%`;
-  })
-  .join(', ');
-
-const ribbonBackground = `linear-gradient(to right, ${gradientStops})`;
 ---
 
-<div class="idioma-wrapper">
-  <!-- Imagen de la bandera directamente con sombra en la silueta de la foto -->
+<div 
+  class="idioma-wrapper" 
+  data-ribbon-colors={JSON.stringify(json.ribbonColors)} 
+  data-is-uk={isUK ? 'true' : 'false'}
+>
   <img src={json.flagIcon} alt={`${json.language} - ${json.level}`} class="flag-image" />
 
-  <!-- Cinta desplegable al hacer hover -->
   <div class="ribbon-container">
-    <div 
-      class={`ribbon ${isUK ? 'uk-ribbon' : ''}`} 
-      style={!isUK ? `background: ${ribbonBackground};` : ''}
-    >
+    <div class={`ribbon ${isUK ? 'uk-ribbon' : ''}`}>
       <span class="ribbon-text">{json.level}</span>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const idiomaWrappers = document.querySelectorAll('.idioma-wrapper');
+
+    idiomaWrappers.forEach((wrapper) => {
+      const ribbon = wrapper.querySelector('.ribbon') as HTMLElement;
+      const isUk = wrapper.getAttribute('data-is-uk') === 'true';
+      const colorsData = wrapper.getAttribute('data-ribbon-colors');
+
+      if (ribbon) {
+        if (!isUk && colorsData) {
+          const colors: string[] = JSON.parse(colorsData);
+          const colorsCount = colors.length;
+
+          if (colorsCount > 0) {
+            const step = 100 / colorsCount;
+            const gradientStops = colors
+              .map((color, index) => {
+                const start = index * step;
+                const end = (index + 1) * step;
+                return `${color} ${start}%, ${color} ${end}%`;
+              })
+              .join(', ');
+
+            ribbon.style.background = `linear-gradient(to right, ${gradientStops})`;
+          }
+        }
+
+        // 2. APLICACIÓN DEL DIFUMINADO VÍA JAVASCRIPT
+        const maskGradient = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 100%)';
+        ribbon.style.maskImage = maskGradient;
+        ribbon.style.webkitMaskImage = maskGradient;
+      }
+    });
+  });
+</script>
 
 <style>
   .idioma-wrapper {
@@ -69,9 +93,6 @@ const ribbonBackground = `linear-gradient(to right, ${gradientStops})`;
     justify-content: center;
     align-items: center;
     padding-top: 20px;
-
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
   }
 
   .uk-ribbon {
