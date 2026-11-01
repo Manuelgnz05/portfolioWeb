@@ -1,5 +1,4 @@
 ---
-// src/components/Proyecto.astro
 const { json, active } = Astro.props;
 ---
 
@@ -45,7 +44,7 @@ const { json, active } = Astro.props;
     align-items: center;
     width: 680px;
     height: 560px;
-    background-color: #434343;
+    background-color: var(--card-header-bg);
     border-radius: 18px;
     padding: 32px 40px;
     box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.45);
@@ -59,7 +58,7 @@ const { json, active } = Astro.props;
   .title {
     font-size: 28px;
     font-weight: 700;
-    color: #E0E0E0;
+    color: var(--card-text);
     margin: 0px 0px 20px 0px;
     text-align: center;
     height: 34px;
@@ -68,7 +67,7 @@ const { json, active } = Astro.props;
   .image-wrapper {
     width: 100%;
     height: 290px;
-    background-color: #A4A4A4;
+    background-color: var(--card-bg);
     border-radius: 14px;
     overflow: hidden;
     display: flex;
@@ -88,7 +87,7 @@ const { json, active } = Astro.props;
     font-family: 'Roboto Serif', Georgia, serif;
     font-size: 16px;
     line-height: 1.5;
-    color: #A4A4A4;
+    color: var(--text-body);
     margin: 0px;
     width: 100%;
     text-align: left;
@@ -109,11 +108,10 @@ const { json, active } = Astro.props;
     gap: 12px;
   }
 
-  /* --- HOVER SUTIL SIN TONO VERDE Y CON ELEVACIÓN MÍNIMA --- */
   .btn-link {
     width: 40px;
     height: 40px;
-    border: 1px solid #A4A4A4;
+    border: 1px solid var(--text-body);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -132,7 +130,6 @@ const { json, active } = Astro.props;
     transform: translateY(0px);
   }
 
-  /* Imágenes PNG para los botones de enlaces */
   .link-icon {
     width: 22px;
     height: 22px;
@@ -151,9 +148,8 @@ const { json, active } = Astro.props;
   }
 
   .built-with {
-    font-family: 'Roboto Serif', Georgia, serif;
     font-size: 15px;
-    color: #A4A4A4;
+    color: var(--text-body);
   }
 
   .tech-icons {

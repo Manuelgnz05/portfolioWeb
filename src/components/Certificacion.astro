@@ -42,14 +42,14 @@ const { json } = Astro.props;
   h3 {
     font-size: 24px;
     font-weight: 700;
-    color: #434343;
+    color: var(--text-title);
     margin: 0px;
   }
 
   .share-btn {
     width: 42px;
     height: 42px;
-    border: 1px solid #434343;
+    border: 1px solid var(--text-title);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -73,9 +73,17 @@ const { json } = Astro.props;
     margin: 0px;
   }
 
+  :global(body.dark-theme) .issuer {
+    color: var(--text-body);
+  }
+
   .description {
     font-size: 16px;
     color: #6C6C6C;
     margin: 12px 0px 0px 0px;
+  }
+
+  :global(body.dark-theme) .description {
+    color: var(--text-body);
   }
 </style>

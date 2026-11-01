@@ -5,7 +5,7 @@ const { json } = Astro.props;
 <div class="skill-wrapper" data-percentage={json.percentage}>
   <div 
     class="skill-card" 
-    style={`background-image: linear-gradient(180deg, ${json.color} 0%, #E0E0E0 100%);`}
+    style={`background-image: linear-gradient(180deg, ${json.color} 0%, var(--bg-main) 100%);`}
   >
     <img src={json.icon} alt={json.name} />
     <span>{json.name}</span>
@@ -30,13 +30,18 @@ const { json } = Astro.props;
   .skill-card {
     width: 280px;
     height: 150px;
-    background-color: #E0E0E0;
+    background-color: var(--bg-main);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
     box-shadow: 0px 4px 100px 15px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  :global(body.dark-theme) .skill-card {
+    box-shadow: 0px 4px 100px 15px rgba(0, 0, 0, 0.6);
   }
 
   img {
@@ -48,8 +53,9 @@ const { json } = Astro.props;
   span {
     font-size: 30px;
     font-weight: 500;
-    color: #161616;
+    color: var(--text-title);
     letter-spacing: 0.5px;
+    transition: color 0.3s ease;
   }
 
   .progress-container {
@@ -70,10 +76,11 @@ const { json } = Astro.props;
   .progress-track {
     flex: 1;
     height: 14px;
-    background-color: #E0E0E0;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: var(--bg-main);
+    border: 1px solid var(--nav-border);
     border-radius: 15px;
     overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   .progress-fill {
@@ -86,9 +93,10 @@ const { json } = Astro.props;
   .progress-text {
     font-size: 14px;
     font-weight: 500;
-    color: #1A1A1A;
+    color: var(--text-title);
     min-width: 35px;
     text-align: right;
+    transition: color 0.3s ease;
   }
 </style>
 
@@ -105,7 +113,6 @@ const { json } = Astro.props;
     let interval: ReturnType<typeof setInterval>;
 
     wrapper.addEventListener('mouseenter', () => {
-
       if (fill) fill.style.width = target + '%';
       
       let current = 0;
@@ -127,7 +134,6 @@ const { json } = Astro.props;
     });
 
     wrapper.addEventListener('mouseleave', () => {
-      // Resetea los valores al quitar el cursor
       clearInterval(interval);
       if (fill) fill.style.width = '0%';
       if (text) text.innerText = '0%';

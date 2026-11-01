@@ -1,5 +1,4 @@
 ---
-// src/components/Proyectos.astro
 import json from "../data/proyectos.json";
 import Proyecto from "./Proyecto.astro";
 ---
@@ -52,27 +51,22 @@ import Proyecto from "./Proyecto.astro";
       
       const nextCard = cards[nextIndex] as HTMLElement;
 
-      // 1. Añadir clase de salida a la tarjeta actual
       const exitClass = direction === 'next' ? 'exit-left' : 'exit-right';
       currentCard.classList.add(exitClass);
 
       setTimeout(() => {
-        // 2. Ocultar la tarjeta actual y limpiar sus clases
         currentCard.classList.remove('active', exitClass);
 
-        // 3. Preparar la entrada de la nueva tarjeta
         const enterClass = direction === 'next' ? 'enter-right' : 'enter-left';
         nextCard.classList.add(enterClass, 'active');
 
-        // Forzar reflow para que el navegador registre la posición inicial de entrada
         void nextCard.offsetWidth;
 
-        // 4. Iniciar animación de entrada eliminando la clase de desplazamiento inicial
         nextCard.classList.remove(enterClass);
 
         currentIndex = nextIndex;
         isAnimating = false;
-      }, 250); // Coincide con la duración de la transición CSS
+      }, 250); 
     }
 
     btnPrev?.addEventListener('click', () => changeProject('prev'));
@@ -87,6 +81,7 @@ import Proyecto from "./Proyecto.astro";
     justify-content: center;
     padding: 80px 0px;
     margin-top: 100px;
+    background-color: var(--bg-main);
   }
 
   .proyectos-wrapper {
@@ -97,12 +92,11 @@ import Proyecto from "./Proyecto.astro";
     align-items: center;
   }
 
-  /* --- TÍTULO CON HOVER MODERNO --- */
   .titulo-proyectos {
     position: relative;
     font-size: 32px;
     font-weight: 700;
-    color: #434343;
+    color: var(--text-title);
     letter-spacing: 2px;
     margin: 0px 0px 60px 0px;
     text-transform: uppercase;
@@ -117,13 +111,13 @@ import Proyecto from "./Proyecto.astro";
     left: 50%;
     width: 0%;
     height: 3px;
-    background-color: #AAB888;
+    background-color: var(--accent-color);
     border-radius: 2px;
     transition: width 0.3s ease, left 0.3s ease;
   }
 
   .titulo-proyectos:hover {
-    color: #262626;
+    color: var(--text-title);
     transform: scale(1.03);
   }
 
@@ -145,29 +139,28 @@ import Proyecto from "./Proyecto.astro";
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 20px; /* Da espacio suficiente para que la sombra redondeada respire */
+    padding: 20px;
   }
-
 
   .nav-btn {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #434343;
+    background-color: var(--card-header-bg);
     border: 2px solid transparent;
-    color: #E0E0E0;
+    color: var(--card-text);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
-    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
   }
 
   .nav-btn:hover {
     transform: translateY(-2px);
-    background-color: #AAB888;
+    background-color: var(--accent-color);
     color: #262626;
     box-shadow: 0px 10px 22px rgba(170, 184, 136, 0.35);
   }
@@ -192,7 +185,6 @@ import Proyecto from "./Proyecto.astro";
     transition: transform 0.25s ease, opacity 0.25s ease;
   }
 
-  /* Clases de salida */
   .proyecto-card.exit-left {
     opacity: 0;
     transform: translateX(-40px);
@@ -203,7 +195,6 @@ import Proyecto from "./Proyecto.astro";
     transform: translateX(40px);
   }
 
-  /* Clases de entrada */
   .proyecto-card.enter-right {
     opacity: 0;
     transform: translateX(40px);

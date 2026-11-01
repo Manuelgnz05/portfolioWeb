@@ -1,3 +1,7 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro';
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -10,10 +14,39 @@
   </head>
   <body>
     <slot />
+    <ThemeToggle />
   </body>
 </html>
 
 <style is:global>
+  :root {
+    --bg-main: #E0E0E0;
+    --nav-bg: #E0E0E0;
+    --nav-border: #6A6A6A;
+    --text-title: #434343;
+    --text-description: #161616;
+    --text-body: #A4A4A4;
+    --card-bg: #2D2D2D;
+    --card-header-bg: #434343;
+    --card-footer-bg: #252525;
+    --card-text: #E0E0E0;
+    --accent-color: #AAB888;
+  }
+
+  body.dark-theme {
+    --bg-main: #434343;         
+    --nav-bg: #222222;           
+    --nav-border: #E0E0E0;       
+    --text-title: #F0F0F0;  
+    --text-description: #F0F0F0;   
+    --text-body: #B0B0B0;        
+    --card-bg: #242424;          
+    --card-header-bg: #2D2D2D;  
+    --card-footer-bg: #1F1F1F;   
+    --card-text: #E8E8E8;        
+    --accent-color: #AAB888;    
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -23,8 +56,10 @@
     margin: 0px;
     width: 100%;
     min-height: 100vh;
-    background-color: #E0E0E0;
+    background-color: var(--bg-main);
+    color: var(--text-title);
     font-family: 'Roboto Serif', Georgia, serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {

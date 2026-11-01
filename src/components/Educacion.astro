@@ -1,5 +1,4 @@
 ---
-// src/components/Educacion.astro
 import json from "../data/educacion.json";
 import Estudio from "./Estudio.astro";
 ---
@@ -32,7 +31,8 @@ import Estudio from "./Estudio.astro";
     justify-content: center;
     padding: 60px 0px;
     margin-top: 80px;
-    background-color: #E0E0E0;
+    background-color: var(--bg-main);
+    transition: background-color 0.3s ease;
   }
 
   .educacion-wrapper {
@@ -46,10 +46,11 @@ import Estudio from "./Estudio.astro";
   h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #434343;
+    color: var(--text-title);
     letter-spacing: 2px;
     margin: 0px 0px 80px 0px;
     text-transform: uppercase;
+    transition: color 0.3s ease;
   }
 
   .timeline-container {
@@ -65,7 +66,8 @@ import Estudio from "./Estudio.astro";
     top: 0px;
     bottom: 40px;
     width: 2px;
-    background-color: #AAB888;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
   }
 
   .initial-commit-container {
@@ -73,8 +75,8 @@ import Estudio from "./Estudio.astro";
   }
 
   .commit-pill {
-    background-color: #434343;
-    color: #E0E0E0;
+    background-color: var(--card-bg);
+    color: var(--card-text);
     padding: 12px 30px;
     border-radius: 25px;
     display: flex;
@@ -86,26 +88,28 @@ import Estudio from "./Estudio.astro";
     font-size: 11px;
     font-weight: 500;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     outline: 2px solid transparent;
   }
 
+  .commit-pill:hover {
+    outline: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    box-shadow: 0px 6px 20px rgba(170, 184, 136, 0.3);
+  }
 
-    .commit-pill:hover {
-        outline: 2px solid #AAB888;
-        color: #AAB888;
-        box-shadow: 0px 6px 20px rgba(139, 155, 130, 0.3);
-    }
+  .icon-commit {
+    width: 25px;
+    height: 13px;
+    transition: filter 0.3s ease;
+  }
 
-    .icon-commit {
-        width: 25px;
-        height: 13px;
-    }
+  :global(body.dark-theme) .icon-commit {
+    filter: brightness(0) invert(1);
+  }
 
-    .commit-pill:hover .icon-commit {
-      filter: brightness(0) saturate(100%) invert(81%) sepia(21%) saturate(629%) hue-rotate(54deg) brightness(91%) contrast(85%);
-    }
-
-  
+  .commit-pill:hover .icon-commit {
+    filter: brightness(0) saturate(100%) invert(81%) sepia(21%) saturate(629%) hue-rotate(54deg) brightness(91%) contrast(85%);
+  }
 </style>

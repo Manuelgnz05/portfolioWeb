@@ -1,5 +1,4 @@
 ---
-// src/components/Trabajo.astro
 const { json, isLast } = Astro.props;
 ---
 
@@ -39,16 +38,17 @@ const { json, isLast } = Astro.props;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 2px solid #AAB888;
+    border: 2px solid var(--accent-color);
     background-color: transparent;
     box-sizing: border-box;
     z-index: 2;
     flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   .timeline-node.active {
-    background-color: #AAB888;
-    border-color: #AAB888;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
   }
 
   .timeline-line {
@@ -56,13 +56,13 @@ const { json, isLast } = Astro.props;
     top: 120px; 
     bottom: -100px; 
     width: 2px;
-    background-color: #AAB888;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
   }
 
-  /* --- TARJETA CON HOVER MODERNO --- */
   .card {
     width: 700px;
-    background-color: #434343;
+    background-color: var(--card-header-bg);
     border-radius: 10px;
     padding: 32px 36px;
     box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.35);
@@ -72,22 +72,27 @@ const { json, isLast } = Astro.props;
     flex-direction: column;
     gap: 12px;
     box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  :global(body.dark-theme) .card {
+    box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.6);
   }
 
   h3 {
     font-size: 22px;
     font-weight: 700;
-    color: #E0E0E0;
+    color: var(--card-text);
     margin: 0px;
     line-height: 1;
+    transition: color 0.3s ease;
   }
 
   .company {
     position: relative;
     font-size: 18px;
     font-weight: 400;
-    color: #AAB888;
+    color: var(--accent-color);
     text-decoration: none;
     margin: 0px;
     width: fit-content;
@@ -101,8 +106,8 @@ const { json, isLast } = Astro.props;
     left: 0;
     width: 0%;
     height: 2px;
-    background-color: #AAB888;
-    transition: width 0.3s ease;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease, background-color 0.3s ease;
   }
 
   .company:hover::after {
@@ -111,7 +116,8 @@ const { json, isLast } = Astro.props;
 
   .details {
     font-size: 16px;
-    color: #E0E0E0;
+    color: var(--card-text);
     margin: 0px;
+    transition: color 0.3s ease;
   }
 </style>
