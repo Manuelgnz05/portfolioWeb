@@ -39,7 +39,7 @@
         <a href="mailto:manuelgoca08@gmail.com" class="info-card dark-card email-card">
           <div class="card-header small-header">
             <div class="icon-circle">
-              <img src="correo-electronico.png" alt="Email" class="info-icon" />
+              <img src="correo-electronico.png" alt="Email" class="info-icon correo" />
             </div>
             <span>EMAIL</span>
           </div>
@@ -272,7 +272,7 @@
   .icon-circle {
     width: 24px;
     height: 24px;
-    border: 1px solid var(--text-body);
+    border: 1px solid var( --accent-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -355,6 +355,10 @@
   }
 
   :global(body.dark-theme) .btn-icon {
+    filter: invert(1);
+  }
+
+  :global(body.dark-theme) .correo {
     filter: invert(1);
   }
 </style>
