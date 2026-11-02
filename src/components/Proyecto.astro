@@ -163,4 +163,12 @@ const { json, active } = Astro.props;
     height: 24px;
     object-fit: contain;
   }
+
+  :global(body.dark-theme) .tech-icon{
+    filter: invert(1);
+  }
+
+  :global(body.dark-theme) .link-icon {
+    filter: invert(1);
+  }
 </style>

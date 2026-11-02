@@ -8,11 +8,6 @@ const navLinks = [
   { name: 'Proyectos', href: '#proyectos', offset: -60 },
   { name: 'Certificaciones', href: '#certificaciones', offset: 45 }
 ];
-
-const socialLinks = [
-  { name: 'GitHub', href: 'https://github.com/Manuelgnz05', icon: 'githudSNegro.png' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/manuel-gonz%C3%A1lez-caballero-439bb1410/', icon: 'logo_linkedin.png' }
-];
 ---
 
 <header class="navbar-wrapper">
@@ -32,11 +27,14 @@ const socialLinks = [
     </nav>
 
     <div class="social-links">
-      {socialLinks.map((social) => (
-        <button class="social-btn social-trigger" data-url={social.href} aria-label={social.name}>
-          <img src={social.icon} alt={social.name} class="social-icon" />
-        </button>
-      ))}
+
+      <button class="social-btn social-trigger" data-url={'https://github.com/Manuelgnz05'} aria-label='GitHub'>
+        <img src='githudSNegro.png' alt='GitHub' class="social-icon" />
+      </button>
+      <button class="social-btn social-trigger" data-url='https://www.linkedin.com/in/manuel-gonz%C3%A1lez-caballero-439bb1410/' aria-label='LinkedIn'>
+        <img src='logo_linkedin.png' alt='LinkedIn' class="social-icon" />
+      </button>
+
     </div>
   </div>
 </header>
@@ -226,6 +224,10 @@ const socialLinks = [
   }
 
   :global(body.dark-theme) .social-icon {
+    filter: invert(1);
+  }
+
+  :global(body.dark-theme) .logo-img {
     filter: invert(1);
   }
 </style>

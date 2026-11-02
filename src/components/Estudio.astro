@@ -311,4 +311,7 @@ const { json } = Astro.props;
   .card:hover h3 {
     color: var(--accent-color);
   }
+  :global(body.dark-theme) .icon-file {
+    filter: invert(1);
+  }
 </style>
