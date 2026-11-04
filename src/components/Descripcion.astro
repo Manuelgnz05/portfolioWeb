@@ -10,9 +10,15 @@
         Soy un profesional con experiencia como profesor particular. Destaco por mi habilidad con el lenguaje Java y mis excepcionales habilidades de comunicación. Busco aplicar mi creatividad e ingenio en un entorno colaborativo.
       </p>
       
-      <button class="link-contacto nav-trigger" data-target="#contacto" data-offset="0">
-        Contacto
-      </button>
+      <div class="acciones-box">
+        <button class="link-contacto nav-trigger" data-target="#contacto" data-offset="0">
+          Contacto
+        </button>
+
+        <a href="Curriculum-Manuel-González-Caballero.pdf" download="CV_Manuel_Gonzalez_Caballero.pdf" class="link-contacto link-cv">
+          Currículum
+        </a>
+      </div>
     </div>
   </article>
 </section>
@@ -102,6 +108,12 @@
     margin-bottom: 32px;
     color: var(--text-title);
     transition: color 0.3s ease;
+  }
+
+  .acciones-box {
+    display: flex;
+    gap: 30px;
+    align-items: center;
   }
 
   .link-contacto {
