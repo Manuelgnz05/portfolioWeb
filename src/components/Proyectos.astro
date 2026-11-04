@@ -1,0 +1,207 @@
+---
+import json from "../data/proyectos.json";
+import Proyecto from "./Proyecto.astro";
+---
+
+<section id="proyectos">
+  <div class="proyectos-wrapper">
+    <h2 class="titulo-proyectos">PROYECTOS</h2>
+
+    <div class="carousel-container">
+      <button id="btn-prev" class="nav-btn" aria-label="Proyecto anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+
+      <div class="cards-wrapper">
+        {json.map((contenido, index) => (
+          <Proyecto json={contenido} active={index === 0} />
+        ))}
+      </div>
+
+      <button id="btn-next" class="nav-btn" aria-label="Siguiente proyecto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.proyecto-card');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    function changeProject(direction: 'next' | 'prev') {
+      if (isAnimating || cards.length <= 1) return;
+      isAnimating = true;
+
+      const currentCard = cards[currentIndex] as HTMLElement;
+      const nextIndex = direction === 'next' 
+        ? (currentIndex + 1) % cards.length 
+        : (currentIndex - 1 + cards.length) % cards.length;
+      
+      const nextCard = cards[nextIndex] as HTMLElement;
+
+      const exitClass = direction === 'next' ? 'exit-left' : 'exit-right';
+      currentCard.classList.add(exitClass);
+
+      setTimeout(() => {
+        currentCard.classList.remove('active', exitClass);
+
+        const enterClass = direction === 'next' ? 'enter-right' : 'enter-left';
+        nextCard.classList.add(enterClass, 'active');
+
+        void nextCard.offsetWidth;
+
+        nextCard.classList.remove(enterClass);
+
+        currentIndex = nextIndex;
+        isAnimating = false;
+      }, 250); 
+    }
+
+    btnPrev?.addEventListener('click', () => changeProject('prev'));
+    btnNext?.addEventListener('click', () => changeProject('next'));
+  });
+</script>
+
+<style>
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px 0px;
+    margin-top: 100px;
+    background-color: var(--bg-main);
+  }
+
+  .proyectos-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titulo-proyectos {
+    position: relative;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-title);
+    letter-spacing: 2px;
+    margin: 0px 0px 60px 0px;
+    text-transform: uppercase;
+    cursor: default;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .titulo-proyectos::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+
+  .titulo-proyectos:hover {
+    color: var(--text-title);
+    transform: scale(1.03);
+  }
+
+  .titulo-proyectos:hover::after {
+    width: 100%;
+    left: 0%;
+  }
+
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .cards-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+  }
+
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--card-header-bg);
+    border: 2px solid transparent;
+    color: var(--card-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+  }
+
+  .nav-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--accent-color);
+    color: #262626;
+    box-shadow: 0px 10px 22px rgba(170, 184, 136, 0.35);
+  }
+
+  .nav-btn:active {
+    transform: translateY(0px) scale(0.96);
+  }
+
+  .nav-btn svg {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-btn:hover svg {
+    transform: scale(1.1);
+  }
+</style>
+
+<style is:global>
+  .proyecto-card {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .proyecto-card.exit-left {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  .proyecto-card.exit-right {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  .proyecto-card.enter-right {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  .proyecto-card.enter-left {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+</style>

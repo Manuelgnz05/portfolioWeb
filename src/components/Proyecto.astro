@@ -1,0 +1,174 @@
+---
+const { json, active } = Astro.props;
+---
+
+<div class={`proyecto-card ${active ? 'active' : ''}`} data-id={json.id}>
+  <h3 class="title">{json.title}</h3>
+
+  <div class="image-wrapper">
+    <img src={json.image} alt={json.title} class="project-img" />
+  </div>
+
+  <p class="description">{json.description}</p>
+
+  <div class="card-footer">
+    <div class="links">
+      <a href={json.githubUrl} target="_blank" rel="noopener noreferrer" class="btn-link" aria-label="GitHub">
+        <img src="githudS.png" alt="GitHub" class="link-icon" />
+      </a>
+      <a href={json.liveUrl} target="_blank" rel="noopener noreferrer" class="btn-link" aria-label="Live Demo">
+        <img src="enlace.png" alt="Live Demo" class="link-icon" />
+      </a>
+    </div>
+
+    <div class="tech-stack">
+      <span class="built-with">Built with:</span>
+      <div class="tech-icons">
+        {json.technologies.map((tech: { name: string; icon: string }) => (
+          <img 
+            src={tech.icon.replace('public/', '/')} 
+            alt={tech.name} 
+            title={tech.name} 
+            class="tech-icon" 
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .proyecto-card {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 680px;
+    height: 560px;
+    background-color: var(--card-header-bg);
+    border-radius: 18px;
+    padding: 32px 40px;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.45);
+    box-sizing: border-box;
+  }
+
+  .proyecto-card.active {
+    display: flex;
+  }
+
+  .title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--card-text);
+    margin: 0px 0px 20px 0px;
+    text-align: center;
+    height: 34px;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: 290px;
+    background-color: var(--card-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    flex-shrink: 0;
+  }
+
+  .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .description {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-body);
+    margin: 0px;
+    width: 100%;
+    text-align: left;
+    height: 50px;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn-link {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--text-body);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.03);
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-link:hover {
+    transform: translateY(-1px);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-link:active {
+    transform: translateY(0px);
+  }
+
+  .link-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+  }
+
+  .btn-link:hover .link-icon {
+    transform: scale(1.04);
+  }
+
+  .tech-stack {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .built-with {
+    font-size: 15px;
+    color: var(--text-body);
+  }
+
+  .tech-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tech-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  :global(body.dark-theme) .tech-icon{
+    filter: invert(1);
+  }
+
+  :global(body.dark-theme) .link-icon {
+    filter: invert(1);
+  }
+</style>

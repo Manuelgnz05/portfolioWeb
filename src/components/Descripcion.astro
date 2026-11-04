@@ -1,0 +1,152 @@
+<section id="inicio">
+  <article>
+    <div class="imagen-box">
+      <img src="perfil.png" alt="Fotografía de perfil" />
+    </div>
+    
+    <div class="texto-box">
+      <h2>Descripción</h2>
+      <p>
+        Soy un profesional con experiencia como profesor particular. Destaco por mi habilidad con el lenguaje Java y mis excepcionales habilidades de comunicación. Busco aplicar mi creatividad e ingenio en un entorno colaborativo.
+      </p>
+      
+      <div class="acciones-box">
+        <button class="link-contacto nav-trigger" data-target="#contacto" data-offset="0">
+          Contacto
+        </button>
+
+        <a href="Curriculum-Manuel-González-Caballero.pdf" download="CV_Manuel_Gonzalez_Caballero.pdf" class="link-contacto link-cv">
+          Currículum
+        </a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnContacto = document.querySelector('.btn-contacto, .link-contacto');
+
+    if (btnContacto) {
+      btnContacto.addEventListener('click', () => {
+        const targetId = btnContacto.getAttribute('data-target');
+        const customOffset = parseInt(btnContacto.getAttribute('data-offset') || '100', 10);
+
+        if (targetId) {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - customOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  section {
+    width: 100%;
+    display: flex;
+    background-color: var(--bg-main);
+    margin-top: 40px;
+    transition: background-color 0.3s ease;
+  }
+
+  article {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bg-main);
+    transition: background-color 0.3s ease;
+  }
+
+  .imagen-box {
+    width: 480px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 0px 70px 8px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease;
+  }
+
+  :global(body.dark-theme) .imagen-box {
+    box-shadow: 0px 0px 70px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .texto-box {
+    width: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: var(--text-title);
+    transition: color 0.3s ease;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 32px;
+    color: var(--text-title);
+    transition: color 0.3s ease;
+  }
+
+  .acciones-box {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .link-contacto {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 18px;
+    color: var(--accent-color);
+    text-decoration: none;
+    align-self: flex-start;
+    cursor: pointer;
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+
+  .link-contacto::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.2s ease, background-color 0.3s ease;
+  }
+
+  .link-contacto:hover {
+    color: var(--accent-color);
+    transform: translateY(-1px);
+  }
+
+  .link-contacto:hover::after {
+    width: 100%;
+  }
+</style>
