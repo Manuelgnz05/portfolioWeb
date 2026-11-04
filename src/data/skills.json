@@ -1,37 +1,37 @@
 [
   {
     "name": "HTML",
-    "icon": "../../public/HTML.png",
+    "icon": "/HTML.png",
     "color": "#FFC089",
     "percentage": 85
   },
   {
     "name": "CSS",
-    "icon": "../../public/CSS.png",
+    "icon": "/CSS.png",
     "color": "#9DE2FF",
     "percentage": 80
   },
   {
     "name": "JS",
-    "icon": "../../public/js2.png",
+    "icon": "/js2.png",
     "color": "#F9FF93",
     "percentage": 70
   },
   {
     "name": "GIT",
-    "icon": "../../public/git.png",
+    "icon": "/git.png",
     "color": "#FF6567",
     "percentage": 75
   },
   {
     "name": "SQL",
-    "icon": "../../public/SQL.png",
+    "icon": "/SQL.png",
     "color": "#62ABFF",
     "percentage": 80
   },
   {
     "name": "JAVA",
-    "icon": "../../public/java.png",
+    "icon": "/java.png",
     "color": "#FF9E9E",
     "percentage": 85
   }

@@ -1,0 +1,317 @@
+---
+const { json } = Astro.props;
+---
+
+<div class={`timeline-row ${json.side}`}>
+  {json.side === 'left' ? (
+    <>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-header">
+            <span class="branch-id">{json.id}</span>
+            <span class="branch-pill">{json.branch}</span>
+            <span class="location">{json.location}</span>
+          </div>
+          <div class="card-body">
+            <h3>{json.title} <span class="center">{json.center}</span></h3>
+
+            <div class="description-wrapper">
+              <div class="vertical-accent-line"></div>
+              <p>{json.description}</p>
+            </div>
+            <div class="tags">
+              {json.tags.map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="files">
+              <img src={json.filesIcon} alt="fichero" class="icon-file" />
+              {json.filesChanged}
+            </span>
+            <span class="insertions">{json.insertions}</span>
+            <span class="deletions">{json.deletions}</span>
+          </div>
+        </div>
+
+        <div class="connector-line"></div>
+      </div>
+
+      <div class="timeline-node"></div>
+
+      <div class="date-container">
+        <div class="date-badge">
+          <img src={json.calendarIcon} alt="calendario" class="icon-calendar" />
+          <span>{json.date}</span>
+        </div>
+      </div>
+    </>
+  ) : (
+    <>
+      <div class="date-container date-left">
+        <div class="date-badge">
+          <img src={json.calendarIcon} alt="calendario" class="icon-calendar" />
+          <span>{json.date}</span>
+        </div>
+      </div>
+
+      <div class="timeline-node"></div>
+
+      <div class="card-container card-right">
+        <div class="connector-line"></div>
+        <div class="card">
+          <div class="card-header">
+            <span class="branch-id">{json.id}</span>
+            <span class="branch-pill">{json.branch}</span>
+            <span class="location">{json.location}</span>
+          </div>
+          <div class="card-body">
+            <h3>{json.title} <span class="center">{json.center}</span></h3>
+            <div class="description-wrapper">
+              <div class="vertical-accent-line"></div>
+              <p>{json.description}</p>
+            </div>
+            <div class="tags">
+              {json.tags.map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="files">
+              <img src={json.filesIcon} alt="fichero" class="icon-file" />
+              {json.filesChanged}
+            </span>
+            <span class="insertions">{json.insertions}</span>
+            <span class="deletions">{json.deletions}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  )}
+</div>
+
+<style>
+  .timeline-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 60px;
+  }
+
+  .timeline-node {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 4px solid #3B4237;
+    background-color: var(--bg-main);
+    z-index: 2;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .connector-line {
+    width: 160px;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+  }
+
+  .card-container, .date-container {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .card-container {
+    justify-content: flex-end;
+  }
+
+  .card-right {
+    justify-content: flex-start;
+  }
+
+  .date-container {
+    justify-content: flex-start;
+    padding-left: 30px;
+  }
+
+  .date-left {
+    justify-content: flex-end;
+    padding-left: 0px;
+    padding-right: 30px;
+  }
+
+  .card {
+    width: 2000px;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    outline: 2px solid transparent;
+    transition: background-color 0.3s ease, outline 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-header {
+    background-color: var(--card-header-bg);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+  }
+
+  .branch-id {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+  }
+
+  .branch-pill {
+    background-color: rgba(43, 70, 102, 0.324);
+    border: 1px solid #0077FF;
+    color: #81BCFF;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .location {
+    margin-left: auto;
+    color: var(--text-body);
+    font-size: 12px;
+    transition: color 0.3s ease;
+  }
+
+  .card-body {
+    padding: 22px 24px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px 0px 14px 0px;
+    color: var(--card-text);
+    transition: color 0.3s ease;
+  }
+
+  .center {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-body);
+    transition: color 0.3s ease;
+  }
+
+  .description-wrapper {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .vertical-accent-line {
+    width: 3px;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-body);
+    margin: 0px;
+    transition: color 0.3s ease;
+  }
+
+  .tags {
+    display: flex;
+    gap: 10px;
+  }
+
+  .tag {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: rgba(170, 184, 136, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .card-footer {
+    background-color: var(--card-footer-bg);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    font-family: monospace;
+    transition: background-color 0.3s ease;
+  }
+
+  .files {
+    color: var(--text-body);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+  }
+
+  .icon-file {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  .insertions {
+    color: #43B500;
+  }
+
+  .deletions {
+    color: #B50000;
+  }
+
+  .date-badge {
+    background-color: var(--card-header-bg);
+    border: 3px solid var(--accent-color);
+    color: var(--card-text);
+    border-radius: 20px;
+    padding: 6px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .icon-calendar {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  .card,
+  .card h3,
+  .tag,
+  .insertions {
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    outline: 2px solid var(--accent-color);
+    box-shadow: 0px 10px 35px rgba(170, 184, 136, 0.3);
+  }
+
+  .card:hover h3 {
+    color: var(--accent-color);
+  }
+  :global(body.dark-theme) .icon-file {
+    filter: invert(1);
+  }
+</style>

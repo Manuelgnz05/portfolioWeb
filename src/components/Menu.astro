@@ -1,0 +1,233 @@
+---
+const navLinks = [
+  { name: 'Inicio', href: '#inicio', offset: 200 },
+  { name: 'Skills', href: '#skills', offset: 120 },
+  { name: 'Educación', href: '#educacion', offset: 70 },
+  { name: 'Idiomas', href: '#idiomas', offset: 100 },
+  { name: 'Experiencia', href: '#experiencia', offset: 140 },
+  { name: 'Proyectos', href: '#proyectos', offset: -60 },
+  { name: 'Certificaciones', href: '#certificaciones', offset: 45 }
+];
+---
+
+<header class="navbar-wrapper">
+  <div class="difuminado"></div>
+  <div class="navbar-container">
+
+    <button class="logo-btn nav-trigger" data-target="#inicio" data-offset="200" aria-label="Inicio">
+      <img src="logo_portfolio_sinfondo.png" alt="Logo MGC" class="logo-img" />
+    </button>
+
+    <nav class="nav-links">
+      {navLinks.map((link) => (
+        <button class="nav-item nav-trigger" data-target={link.href} data-offset={link.offset}>
+          {link.name}
+        </button>
+      ))}
+    </nav>
+
+    <div class="social-links">
+
+      <button class="social-btn social-trigger" data-url={'https://github.com/Manuelgnz05'} aria-label='GitHub'>
+        <img src='githudSNegro.png' alt='GitHub' class="social-icon" />
+      </button>
+      <button class="social-btn social-trigger" data-url='https://www.linkedin.com/in/manuel-gonz%C3%A1lez-caballero-439bb1410/' aria-label='LinkedIn'>
+        <img src='logo_linkedin.png' alt='LinkedIn' class="social-icon" />
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navTriggers = document.querySelectorAll('.nav-trigger');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    navTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const targetId = trigger.getAttribute('data-target');
+        const customOffset = parseInt(trigger.getAttribute('data-offset') || '100', 10);
+
+        if (targetId) {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - customOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    const socialTriggers = document.querySelectorAll('.social-trigger');
+    socialTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const url = trigger.getAttribute('data-url');
+        if (url) {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id], header[id]');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -50% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navItems.forEach((item) => {
+            if (item.getAttribute('data-target') === `#${id}`) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+  });
+</script>
+
+<style>
+  .navbar-wrapper {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .difuminado {
+    width: 1180px;
+    height: 30px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+
+  .navbar-container {
+    width: 100%;
+    max-width: 1180px;
+    background-color: var(--nav-bg);
+    border: 4px solid var(--nav-border);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 50.6px 8px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .logo-btn {
+    background: none;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.25s ease;
+  }
+
+  .logo-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .logo-img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+
+  :global(body.dark-theme) .logo-img {
+    filter: brightness(1.1);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .nav-item {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 4px 0px;
+    color: var(--text-title);
+    font-size: 15px;
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+
+  .nav-item:hover::after, .nav-item.active::after {
+    width: 100%;
+    left: 0%;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .social-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .social-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+  }
+
+  .social-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+
+  :global(body.dark-theme) .social-icon {
+    filter: invert(1);
+  }
+
+  :global(body.dark-theme) .logo-img {
+    filter: invert(1);
+  }
+</style>

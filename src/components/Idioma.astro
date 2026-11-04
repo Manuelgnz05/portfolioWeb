@@ -1,0 +1,115 @@
+---
+const { json } = Astro.props;
+const isUK = json.code === 'en';
+---
+
+<div 
+  class="idioma-wrapper" 
+  data-ribbon-colors={JSON.stringify(json.ribbonColors)} 
+  data-is-uk={isUK ? 'true' : 'false'}
+>
+  <img src={json.flagIcon} alt={`${json.language} - ${json.level}`} class="flag-image" />
+
+  <div class="ribbon-container">
+    <div class={`ribbon ${isUK ? 'uk-ribbon' : ''}`}>
+      <span class="ribbon-text">{json.level}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const idiomaWrappers = document.querySelectorAll('.idioma-wrapper');
+
+    idiomaWrappers.forEach((wrapper) => {
+      const ribbon = wrapper.querySelector('.ribbon') as HTMLElement;
+      const isUk = wrapper.getAttribute('data-is-uk') === 'true';
+      const colorsData = wrapper.getAttribute('data-ribbon-colors');
+
+      if (ribbon) {
+        if (!isUk && colorsData) {
+          const colors: string[] = JSON.parse(colorsData);
+          const colorsCount = colors.length;
+
+          if (colorsCount > 0) {
+            const step = 100 / colorsCount;
+            const gradientStops = colors
+              .map((color, index) => {
+                const start = index * step;
+                const end = (index + 1) * step;
+                return `${color} ${start}%, ${color} ${end}%`;
+              })
+              .join(', ');
+
+            ribbon.style.background = `linear-gradient(to right, ${gradientStops})`;
+          }
+        }
+
+        const maskGradient = 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 100%)';
+        ribbon.style.maskImage = maskGradient;
+        ribbon.style.webkitMaskImage = maskGradient;
+      }
+    });
+  });
+</script>
+
+<style>
+  .idioma-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+  }
+
+  .flag-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.3));
+    transition: filter 0.3s ease;
+  }
+
+  :global(body.dark-theme) .flag-image {
+    filter: drop-shadow(0px 8px 14px rgba(0, 0, 0, 0.6));
+  }
+
+  .ribbon-container {
+    position: absolute;
+    top: 100px;
+    width: 80px;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+  }
+
+  .idioma-wrapper:hover .ribbon-container {
+    height: 170px;
+  }
+
+  .ribbon {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .uk-ribbon {
+    background-image: url('bandera-reino-unido.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .ribbon-text {
+    font-size: 15px;
+    font-weight: 800;
+    color: #616161;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+  }
+</style>
